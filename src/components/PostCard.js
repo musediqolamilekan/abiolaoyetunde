@@ -9,7 +9,6 @@ export default function PostCard({ item }) {
         >
             <div className="relative rounded-xl overflow-hidden">
                 <div className="relative h-[220px] md:h-[260px] lg:h-60 w-full">
-                    {/* image */}
                     {item.img ? (
                         <Image
                             src={item.img}

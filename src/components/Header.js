@@ -1,63 +1,129 @@
-"use client";
-import { useState, useEffect } from "react";
+'use client'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
-const Header = () => {
-    const [scrolled, setScrolled] = useState(false);
+export default function Header() {
+    const [scrolled, setScrolled] = useState(false)
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20);
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        const handleScroll = () => setScrolled(window.scrollY > 20)
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    useEffect(() => {
+        if (open) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
+        return () => {
+            document.body.style.overflow = ''
+        }
+    }, [open])
+
+    const navItems = [
+        { id: '01', label: 'About', href: '#about' },
+        { id: '02', label: 'Blog', href: '/blog' },
+        { id: '03', label: 'Contact', href: '/contact' },
+        { id: '04', label: 'Resume', href: '/resume.pdf' },
+    ]
 
     return (
-        <header className="fixed top-4 left-0 right-0 z-50 flex justify-center container mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
             <div
-                className={`flex container mx-auto px-4 sm:px-6 lg:px-8 mt-5 items-center justify-between rounded-2xl py-2 transition-all duration-300 ${scrolled
-                    ? "bg-white text-black shadow-md max-w-3xl"
-                    : "bg-[#0a0a0a] text-white"
+                className={`pointer-events-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 transition-all duration-300 mx-4 ${scrolled ? 'bg-transparent backdrop-blur-2xl text-white' : 'bg-[#0a0a0a] text-white'
                     }`}
             >
-                <div className="flex items-center gap-2">
-                    <div className={`h-6 w-6 rounded-full ${scrolled ? "bg-[#0a0a0a]" : "bg-white"}`} />
-                    <span className="font-bold">Abiola</span>
-                </div>
-                <div className="flex items-center gap-4 justify-end">
-                    <div className="flex items-center gap-4">
-                        <button
-                            type="button"
-                            className="flex items-center justify-center rounded-full w-10 h-10 text-current hover:bg-gray-100 transition"
-                            aria-label="Open Search"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="18"
-                                viewBox="0 0 16 16"
-                                fill="none"
-                            >
-                                <path
-                                    d="M13.8333 13.8333L10.7022 10.7022M10.7022 10.7022C11.607 9.79738 12.1667 8.54738 12.1667 7.16667C12.1667 4.40525 9.9281 2.16667 7.16667 2.16667C4.40525 2.16667 2.16667 4.40525 2.16667 7.16667C2.16667 9.9281 4.40525 12.1667 7.16667 12.1667C8.54738 12.1667 9.79738 11.607 10.7022 10.7022Z"
-                                    stroke="currentColor"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                    <a
-                        href="#"
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition ${scrolled
-                            ? "bg-black text-white hover:bg-gray-800"
-                            : "bg-white text-black hover:bg-gray-200"
+                <div className="flex items-center gap-3">
+                    <div
+                        className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 ${scrolled ? 'bg-black' : 'bg-white'
                             }`}
+                        aria-hidden
+                    />
+                    <span className="font-bold tracking-tight">Abiola</span>
+                </div>
+                <nav aria-label="Primary" className="hidden md:flex items-center gap-8">
+                    {navItems.map((n) => (
+                        <Link
+                            key={n.id}
+                            href={n.href}
+                            className={`flex items-center gap-2 text-sm font-medium transition ${scrolled ? 'text-slate-200 hover:text-white' : 'text-slate-100 hover:text-white'
+                                }`}
+                        >
+                            <span className="text-[#01a2bb] font-semibold">{n.id}.</span>
+                            <span>{n.label}</span>
+                        </Link>
+                    ))}
+                </nav>
+                <div className="md:hidden flex items-center gap-3">
+                    <button
+                        onClick={() => setOpen(true)}
+                        aria-label="Open menu"
+                        className="relative inline-flex items-center justify-center w-10 h-10 rounded border border-dashed border-slate-400 bg-transparent text-slate-200"
                     >
-                        Resume
-                    </a>
+                        {/* hamburger */}
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                            <path d="M3 7h18M3 12h18M3 17h18" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </header>
-    );
-};
+            <div
+                className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                onClick={() => setOpen(false)}
+                aria-hidden
+            />
+            <aside
+                className={`fixed top-0 left-0 h-full w-[92vw] max-w-[360px] z-50 transform transition-transform duration-300 ${open ? 'translate-x-0' : '-translate-x-full'
+                    }`}
+                role="dialog"
+                aria-modal="true"
+            >
+                <div className="h-full bg-[#0a0a0a] text-white flex flex-col">
+                    <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800">
+                        <div className="flex items-center gap-3">
+                            <div className="h-8 w-8 rounded-full bg-white/10" />
+                            <span className="font-semibold">Abiola</span>
+                        </div>
 
-export default Header;
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={() => setOpen(false)}
+                                aria-label="Close menu"
+                                className="w-10 h-10 inline-flex items-center justify-center rounded border border-dashed border-slate-700 text-slate-200"
+                            >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                    <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <nav className="p-6 overflow-auto">
+                        <ul className="space-y-6">
+                            {navItems.map((n) => (
+                                <li key={n.id}>
+                                    <Link
+                                        href={n.href}
+                                        onClick={() => setOpen(false)}
+                                        className="flex items-center gap-3 px-2 py-3 rounded hover:bg-white/5 transition"
+                                    >
+                                        <span className="text-[#01a2bb] font-semibold">{n.id}.</span>
+                                        <span className="text-lg font-medium">{n.label}</span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                    <div className="mt-auto p-6 border-t border-slate-800">
+                        <a href="mailto:abiolaoyetunde@gmail.com" className="text-sm text-slate-300 hover:text-white">
+                            abiolaoyetunde@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </header>
+    )
+}
