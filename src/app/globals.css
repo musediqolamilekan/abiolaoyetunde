@@ -1,5 +1,114 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import "tailwindcss";
+/* Thin */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_thin-BF64a625c9034b9.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Thin Italic */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_thin-italic-BF64a625c918a96.otf') format('opentype');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Light */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_light-BF64a625c93e709.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Light Italic */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_light-italic-BF64a625c93ac64.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Regular */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_regular-BF64a625c9311e1.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Regular Italic */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_regular-italic-BF64a625c94445e.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Medium */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_medium-BF64a625c84a521.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Medium Italic */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_medium-italic-BF64a625c928c55.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_bold-BF64a625c9151d5.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Bold Italic */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_bold-italic-BF64a625c93b0ce.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Black */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_black-BF64a625c944b08.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Black Italic */
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('/fonts/HvDTrial_Brandon_Grotesque_black-italic-BF64a625c93406c.otf') format('opentype');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
 
 :root {
   --background: #ffffff;
@@ -21,10 +130,14 @@
 }
 
 body {
-  background: var(--background);
+  /* background: var(--background); */
   color: var(--foreground);
-  /* font-family: Arial, Helvetica, sans-serif; */
-  font-family: "Inter", sans-serif;
+  font-family: 'Brandon Grotesque';
+  font-weight: 400;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Satisfy", cursive;
 }
 
 /* globals.css */
@@ -75,4 +188,68 @@ body {
   position: absolute;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   width: 100%;
+}
+
+.hero-sect::after {
+  background: rgba(0, 0, 0, 0) url("/images/slider-bottom.png") no-repeat scroll
+    center center;
+  bottom: 0;
+  content: "";
+  height: 149px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+.breadcrumb::after {
+  background: rgba(0, 0, 0, 0) url("/images/slider-bottom.png") no-repeat scroll center center;
+    bottom: -70px;
+    content: "";
+    height: 149px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 9;
+}
+
+blockquote {
+  margin: 10px 0px;
+      padding: 10px 2px 10px 43px;
+    border-left: 5px solid #34495e;
+    font-size: 16px;
+    font-style: italic;
+    font-family: "lato", sans-serif;
+    font-style: normal;
+    text-transform: none;
+}
+
+blockquote q {
+  position: relative;
+    line-height: 28px;
+    background: transparent;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+blockquote q::before {
+  content: "\f10d";
+    left: -25px;
+    font-family: fontawesome;
+    position: absolute;
+}
+
+blockquote q::after {
+      content: "\f10e";
+    right: -25px;
+    font-family: fontawesome;
+    position: absolute;
 }

@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <section className="mt-16">
+      <section>
         <Section />
         <About />
         <LatestPosts />

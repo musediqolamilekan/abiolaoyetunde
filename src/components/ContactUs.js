@@ -40,7 +40,9 @@ export default function ContactUs() {
 
     return (
         <>
-            <SectionHeading number="03" title="Contact" className="mt-32" />
+            <div className="container mx-auto px-4">
+                <SectionHeading number="03" title="Contact" className="lg:mt-32 mt-20" titleColor='#000000' lineBgColor='#000000' />
+            </div>
             <div className="w-full bg-neutral-800 text-white">
                 <div className="max-w-7xl mx-auto py-16 px-6">
                     <div className="mb-10 grid grid-cols-1 md:grid-cols-4 gap-6 items-center text-left">
@@ -119,7 +121,7 @@ export default function ContactUs() {
                     </div>
                     <div className="md:p-12 rounded-sm">
                         <div className="lg:max-w-4xl w-full mx-auto text-center">
-                            <h3 className="text-2xl md:text-3xl text-white italic tracking-wide">
+                            <h3 className="text-2xl md:text-5xl text-white italic tracking-wide">
                                 Sign up to the <span className="font-semibold not-italic">Book Club</span> to receive updates and exclusive content.
                             </h3>
                             <p className="mt-4 text-sm text-slate-300">

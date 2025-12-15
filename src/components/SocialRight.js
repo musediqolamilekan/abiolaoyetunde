@@ -12,7 +12,7 @@ export default function SocialRight() {
                 className="mb-4 block group"
             >
                 <span
-                    className="block text-sm font-medium select-all text-slate-200 transition-colors group-hover:text-[#01a2bb]"
+                    className="block text-sm font-medium select-all text-[#01a2bb] transition-colors group-hover:text-[#01a2bb]"
                     style={{
                         writingMode: 'vertical-rl',
                         textOrientation: 'mixed',

@@ -14,9 +14,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 relative">
-          <Header />
-          <main className="min-h-screen py-8 pb-20 sm:p-20">{children}</main>
+        <div className="relative">
+          <main className="min-h-screen">{children}</main>
           <Footer />
         </div>
         <SocialLeft />

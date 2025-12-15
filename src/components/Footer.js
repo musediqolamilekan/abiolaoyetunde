@@ -73,15 +73,15 @@ export default function Footer() {
     const activeLang = LANGS.find((l) => l.code === active) || LANGS[0];
 
     return (
-        <footer className="w-full py-8 text-neutral-400">
+        <footer className="w-full py-8 text-black">
             <div className="mx-auto max-w-6xl px-4 flex flex-col items-center gap-6">
                 <div className="w-full flex flex-col sm:flex-row items-center justify-between text-sm gap-4">
-                    <p className="text-center sm:text-left">
+                    <h2 className="text-center lg:text-left text-2xl">
                         Abiola © {new Date().getFullYear()}{" "}
-                        <a href="#" className="ml-3 text-white hover:underline">
+                        <a href="#" className="ml-3 text-black hover:underline">
                             Manage Cookies
                         </a>
-                    </p>
+                    </h2>
                     <div className="relative">
                         <button
                             ref={btnRef}

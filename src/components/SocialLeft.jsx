@@ -24,7 +24,7 @@ export default function SocialLeft() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="p-2 rounded-md bg-black/60 text-slate-200 hover:bg-[#01a2bb] hover:text-black transition"
+              className="p-2 rounded-md bg-black text-slate-200 hover:bg-[#01a2bb] hover:text-black transition"
             >
               <Icon size={18} />
             </a>
