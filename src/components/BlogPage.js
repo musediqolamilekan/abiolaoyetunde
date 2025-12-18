@@ -3,15 +3,49 @@
 import { useMemo, useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { posts, categories } from '@/data/blogData'
+import { urlFor } from '@/lib/sanity'
 
 const POSTS_PER_PAGE = 6
 
 export default function BlogPage() {
+    const [posts, setPosts] = useState([])
+    const [categories, setCategories] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
+
     const [activeCategory, setActiveCategory] = useState('all')
     const [page, setPage] = useState(1)
     const [query, setQuery] = useState('')
     const [indicator, setIndicator] = useState({ left: 0, width: 0 })
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const postsRes = await fetch('/api/posts')
+
+                if (!postsRes.ok) throw new Error('Posts API failed')
+
+                const postsData = await postsRes.json()
+                setPosts(Array.isArray(postsData) ? postsData : [])
+                try {
+                    const catsRes = await fetch('/api/categories')
+                    if (catsRes.ok) {
+                        const catsData = await catsRes.json()
+                        setCategories(Array.isArray(catsData) ? catsData : [])
+                    }
+                } catch {
+                    setCategories([])
+                }
+            } catch (e) {
+                console.error(e)
+                setError(true)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchData()
+    }, [])
 
     const recentPosts = posts.slice(0, 3)
 
@@ -21,13 +55,13 @@ export default function BlogPage() {
             return posts.filter(
                 (p) =>
                     p.title.toLowerCase().includes(q) ||
-                    p.excerpt.toLowerCase().includes(q)
+                    p.excerpt?.toLowerCase().includes(q)
             )
         }
 
         if (activeCategory === 'all') return posts
         return posts.filter((p) => p.category === activeCategory)
-    }, [activeCategory, query])
+    }, [posts, activeCategory, query])
 
     const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
 
@@ -39,12 +73,28 @@ export default function BlogPage() {
     const allCategories = [{ id: 'all', title: 'All' }, ...categories]
 
     const handleCategoryClick = (id) => {
+        setLoading(true)
         setActiveCategory(id)
         setQuery('')
         setPage(1)
+
+        setTimeout(() => {
+            setLoading(false)
+        }, 300)
     }
 
-    /* desktop indicator only */
+    useEffect(() => {
+        setLoading(true)
+
+        const t = setTimeout(() => {
+            setLoading(false)
+        }, 300)
+
+        return () => clearTimeout(t)
+    }, [activeCategory, page])
+
+
+
     useEffect(() => {
         const el = document.querySelector(`[data-cat="${activeCategory}"]`)
         if (!el) return
@@ -58,16 +108,11 @@ export default function BlogPage() {
     return (
         <section className="container mx-auto lg:px-6 px-4 py-20">
             <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-14">
-
-                {/* SIDEBAR — desktop only */}
                 <aside className="hidden lg:block space-y-14">
                     <Search query={query} setQuery={setQuery} setPage={setPage} />
-                    <RecentPosts posts={recentPosts} />
+                    {loading ? <RecentSkeleton /> : <RecentPosts posts={recentPosts} />}
                 </aside>
-
-                {/* MAIN */}
                 <main>
-                    {/* CATEGORY FILTER */}
                     <div className="relative mb-14">
                         <div className="flex flex-wrap justify-center lg:justify-start lg:gap-6 gap-2 text-sm font-medium uppercase tracking-wide">
                             {allCategories.map((cat) => {
@@ -79,8 +124,8 @@ export default function BlogPage() {
                                         data-cat={cat.id}
                                         onClick={() => handleCategoryClick(cat.id)}
                                         className={`px-2 py-2 text-base text-black transition ${active
-                                                ? 'border-y border-black'
-                                                : 'hover:underline'
+                                            ? 'border-y border-black'
+                                            : 'hover:underline'
                                             }`}
                                     >
                                         {cat.title}
@@ -89,7 +134,6 @@ export default function BlogPage() {
                             })}
                         </div>
 
-                        {/* DESKTOP animated indicator */}
                         <span
                             className="hidden lg:block absolute top-0 h-px bg-black transition-all duration-300"
                             style={{
@@ -105,62 +149,67 @@ export default function BlogPage() {
                             }}
                         />
                     </div>
-
-                    {/* POSTS GRID */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {visiblePosts.map((post) => (
-                            <article
-                                key={post.id}
-                                className="border border-neutral-200"
-                            >
-                                <Link href={`/blog/${post.slug}`}>
-                                    <div className="relative h-[260px]">
-                                        <Image
-                                            src={post.img}
-                                            alt={post.title}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    </div>
-                                </Link>
+                        {loading &&
+                            Array.from({ length: POSTS_PER_PAGE }).map((_, i) => (
+                                <PostSkeleton key={i} />
+                            ))}
 
-                                <div className="p-8 text-center">
+                        {!loading && visiblePosts.length === 0 && (
+                            <EmptyState />
+                        )}
+
+                        {!loading &&
+                            visiblePosts.map((post) => (
+                                <article key={post._id} className="border border-neutral-200">
                                     <Link href={`/blog/${post.slug}`}>
-                                        <h2 className="text-lg text-black font-semibold hover:underline">
-                                            {post.title}
-                                        </h2>
+                                        <div className="relative h-[260px]">
+                                            {post.image ? (
+                                                <Image
+                                                    src={urlFor(post.image).url()}
+                                                    alt={post.title}
+                                                    loading="lazy"
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            ) : (
+                                                <div className="absolute inset-0 bg-neutral-200" />
+                                            )}
+                                        </div>
                                     </Link>
 
-                                    <div className="mt-2 text-xs text-neutral-500 uppercase">
-                                        {getCategoryTitle(post.category)} ·{' '}
-                                        {formatDate(post.date)}
-                                    </div>
-
-                                    <p className="mt-6 text-base text-neutral-700 leading-relaxed">
-                                        {post.excerpt}
-                                    </p>
-
-                                    <div className="mt-8 flex items-center justify-center gap-6 text-xs uppercase tracking-wide">
-                                        <span className="text-gray-700">
-                                            By {post.author ?? 'Abiola Oyetunde'}
-                                        </span>
-                                        <span className="text-gray-700">
-                                            Comments {post.comments ?? 0}
-                                        </span>
-                                        <Link
-                                            href={`/blog/${post.slug}`}
-                                            className="text-gray-700 hover:underline"
-                                        >
-                                            Read More
+                                    <div className="p-8 text-center">
+                                        <Link href={`/blog/${post.slug}`}>
+                                            <h2 className="text-lg text-black font-semibold hover:underline">
+                                                {post.title}
+                                            </h2>
                                         </Link>
+
+                                        <div className="mt-2 text-xs text-neutral-500 uppercase">
+                                            {post.categoryTitle} · {formatDate(post.publishedAt)}
+                                        </div>
+
+                                        <p className="mt-6 text-base text-neutral-700 leading-relaxed">
+                                            {post.excerpt}
+                                        </p>
+
+                                        <div className="mt-8 flex items-center justify-center gap-6 text-xs uppercase tracking-wide">
+                                            <span className="text-gray-700 font-bold">
+                                                By {post.author || 'Abiola Oyetunde'}
+                                            </span>
+                                            <Link
+                                                href={`/blog/${post.slug}`}
+                                                className="text-gray-700 hover:underline"
+                                            >
+                                                Read More
+                                            </Link>
+                                        </div>
                                     </div>
-                                </div>
-                            </article>
-                        ))}
+                                </article>
+                            ))}
                     </div>
 
-                    {/* PAGINATION */}
-                    {totalPages > 1 && (
+                    {totalPages > 1 && !loading && (
                         <div className="mt-20 flex justify-between items-center">
                             <Pager
                                 disabled={page === 1}
@@ -177,10 +226,9 @@ export default function BlogPage() {
                         </div>
                     )}
 
-                    {/* MOBILE SIDEBAR — bottom */}
                     <div className="mt-24 space-y-16 lg:hidden">
                         <Search query={query} setQuery={setQuery} setPage={setPage} />
-                        <RecentPosts posts={recentPosts} />
+                        {loading ? <RecentSkeleton /> : <RecentPosts posts={recentPosts} />}
                     </div>
                 </main>
             </div>
@@ -188,7 +236,55 @@ export default function BlogPage() {
     )
 }
 
-/* ---------- components ---------- */
+/* ---------- Empty State ---------- */
+
+function EmptyState() {
+    return (
+        <div className="col-span-full py-32 text-center">
+            <h3 className="text-2xl font-semibold text-black">
+                No stories yet
+            </h3>
+            <p className="mt-4 text-neutral-600 max-w-md mx-auto">
+                This space is reserved for thoughtful writing. New posts will
+                appear here soon.
+            </p>
+            <Link
+                href="/"
+                className="inline-block mt-8 px-6 py-3 border border-black text-black text-sm hover:bg-black hover:text-white transition"
+            >
+                Back to Home
+            </Link>
+        </div>
+    )
+}
+
+/* ---------- Skeletons ---------- */
+
+function PostSkeleton() {
+    return (
+        <div className="border border-neutral-200 animate-pulse">
+            <div className="h-[260px] bg-neutral-200" />
+            <div className="p-8 space-y-4">
+                <div className="h-4 bg-neutral-300 w-3/4 mx-auto" />
+                <div className="h-3 bg-neutral-300 w-1/3 mx-auto" />
+                <div className="h-3 bg-neutral-300 w-full" />
+                <div className="h-3 bg-neutral-300 w-5/6 mx-auto" />
+            </div>
+        </div>
+    )
+}
+
+function RecentSkeleton() {
+    return (
+        <ul className="space-y-3 animate-pulse">
+            {Array.from({ length: 3 }).map((_, i) => (
+                <li key={i} className="h-4 bg-neutral-300 w-full" />
+            ))}
+        </ul>
+    )
+}
+
+/* ---------- unchanged helpers ---------- */
 
 function Search({ query, setQuery, setPage }) {
     return (
@@ -205,9 +301,7 @@ function Search({ query, setQuery, setPage }) {
                     }}
                     className="flex-1 px-4 py-2 text-sm outline-none text-black"
                 />
-                <button className="bg-black text-white px-4">
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fillRule="evenodd" clipRule="evenodd" d="M11.25 2.75C6.14154 2.75 2 6.89029 2 11.998C2 17.1056 6.14154 21.2459 11.25 21.2459C13.5335 21.2459 15.6238 20.4187 17.2373 19.0475L20.7182 22.5287C21.011 22.8216 21.4859 22.8217 21.7788 22.5288C22.0717 22.2359 22.0718 21.761 21.7789 21.4681L18.2983 17.9872C19.6714 16.3736 20.5 14.2826 20.5 11.998C20.5 6.89029 16.3585 2.75 11.25 2.75ZM3.5 11.998C3.5 7.71905 6.96962 4.25 11.25 4.25C15.5304 4.25 19 7.71905 19 11.998C19 16.2769 15.5304 19.7459 11.25 19.7459C6.96962 19.7459 3.5 16.2769 3.5 11.998Z" fill="#FFFFFF" /> </svg>
-                </button>
+                <button className="bg-black text-white px-4">Search</button>
             </div>
         </div>
     )
@@ -219,12 +313,12 @@ function RecentPosts({ posts }) {
             <h4 className="text-lg font-bold mb-4 uppercase text-black">Recent Post</h4>
             <ul className="space-y-3 text-sm">
                 {posts.map((p) => (
-                    <li key={p.id}>
+                    <li key={p._id}>
                         <Link href={`/blog/${p.slug}`} className="font-medium text-gray-900 hover:underline">
                             {p.title}
                         </Link>
                         <div className="text-sm text-gray-700">
-                            {formatDate(p.date)}
+                            {formatDate(p.publishedAt)}
                         </div>
                     </li>
                 ))}
@@ -252,26 +346,10 @@ function Pager({ disabled, onClick, label, arrow }) {
     )
 }
 
-/* ---------- helpers ---------- */
-
 function formatDate(date) {
     return new Date(date).toLocaleDateString(undefined, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     })
-}
-
-function getCategoryTitle(id) {
-    const map = {
-        travel: 'Travel & Adventures',
-        audio: 'Audio',
-        creativity: 'Creativity',
-        goals: 'Goals',
-        news: 'News',
-        soft_skills: 'Soft Skills',
-        technology: 'Technology',
-        video: 'Video',
-    }
-    return map[id] ?? id
 }

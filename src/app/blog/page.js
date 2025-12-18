@@ -1,13 +1,9 @@
 'use client'
-import { posts as allPosts } from '../../data/blogData'
+
 import Header from '@/components/Header'
 import BlogPage from '@/components/BlogPage'
 
 export default function BlogIndex() {
-    const featured = allPosts[0]
-    const right = allPosts.slice(1, 4)
-    const headlines = allPosts.slice(4, 10)
-
     return (
         <div className="text-slate-200">
             <section
@@ -47,26 +43,4 @@ export default function BlogIndex() {
             <BlogPage />
         </div>
     )
-}
-
-// helpers
-function findCategoryTitle(catId) {
-    const map = {
-        travel: 'Travel',
-        lifestyle: 'Lifestyle',
-        entertainment: 'Entertainment',
-        bedtime: 'Bedtime Stories',
-        creative: 'Creative',
-        tech: 'Tech',
-    }
-    return map[catId] ?? catId
-}
-
-function formatDate(d) {
-    try {
-        const dt = new Date(d)
-        return dt.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
-    } catch {
-        return d
-    }
 }

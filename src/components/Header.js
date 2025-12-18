@@ -39,9 +39,9 @@ export default function Header() {
                     className={`relative z-10 pointer-events-auto flex items-center justify-between py-7 bg-transparent transition-colors ${scrolled ? 'text-black' : 'text-white'
                         }`}
                 >
-                    <span className="text-xl font-black tracking-wide">
+                    <Link href="/" className="text-xl font-black tracking-wide">
                         ABIOLA
-                    </span>
+                    </Link>
 
                     <nav className="hidden md:flex items-center gap-10">
                         {navItems.map((item) => {
