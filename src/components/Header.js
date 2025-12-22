@@ -100,12 +100,12 @@ export default function Header() {
 
             </div>
             <div
-                className={`fixed inset-0 bg-black/40 transition-opacity duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                className={`fixed inset-0 bg-black transition-opacity duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                     }`}
                 onClick={() => setOpen(false)}
             />
             <aside
-                className={`fixed top-0 left-0 h-full w-[92vw] max-w-[360px] bg-black text-white z-1001 transform transition-transform duration-300 ${open ? 'translate-x-0' : '-translate-x-full'
+                className={`fixed top-0 left-0 h-screen w-[92vw] max-w-[360px] bg-black text-white z-1001 transform transition-transform duration-300 ${open ? 'translate-x-0' : '-translate-x-full'
                     }`}
                 role="dialog"
                 aria-modal="true"
