@@ -3,7 +3,7 @@
 import Link from 'next/link'
 
 export default function SocialRight() {
-    const email = 'abiolaoyetunde@gmail.com'
+    const email = 'info@abiolaoyetunde.com'
     return (
         <div className="fixed right-6 bottom-6 z-50 lg:flex flex-col items-center hidden">
             <a
@@ -19,7 +19,7 @@ export default function SocialRight() {
                         lineHeight: 1.2,
                     }}
                 >
-                    abiolaoyetunde@gmail.com
+                    info@abiolaoyetunde.com
                 </span>
             </a>
             <div className="w-px h-48 bg-slate-600/50" />

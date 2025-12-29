@@ -8,10 +8,9 @@ import {
 
 export default function SocialLeft() {
   const items = [
-    { href: 'https://upwork.com', label: 'GitHub', Icon: FaUpwork },
-    { href: 'https://instagram.com/yourusername', label: 'Instagram', Icon: FaInstagram },
-    { href: 'https://twitter.com/yourusername', label: 'Twitter', Icon: FaXTwitter },
-    { href: 'https://linkedin.com/in/olamilekan-musediq-a2b10b234', label: 'LinkedIn', Icon: FaLinkedin },
+    { href: 'https://www.upwork.com/freelancers/~0109f0ec7165fc87b3', label: 'Upwork', Icon: FaUpwork },
+    { href: 'https://www.instagram.com/abiola_oyetunde?igsh=MTBwZXU0dWI1OTIzOA%3D%3D&utm_source=qr', label: 'Instagram', Icon: FaInstagram },
+    { href: 'https://www.linkedin.com/in/oyetunde-abiola-17616647?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', label: 'LinkedIn', Icon: FaLinkedin },
   ]
 
   return (

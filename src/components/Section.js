@@ -6,7 +6,7 @@ import SectionHeading from './SectionHeading'
 export default function BetweenHeroText() {
     return (
         <section className="text-white flex justify-center items-center">
-            <div className="container mx-auto px-4 lg:px-6">
+            <div className="max-w-6xl mx-auto px-4 lg:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -19,24 +19,21 @@ export default function BetweenHeroText() {
                     </h2>
 
                     <p className="mt-6 text-black text-lg leading-relaxed">
-                        I write from lived moments and quiet reflections. My work blends
-                        experiences from Nigeria and the UK into pieces that read like a
-                        conversation. I focus on clear, honest stories that hold feeling and
-                        meaning.
-                    </p>
+                                I write from lived moments and quiet reflections, shaped by work across global audiences and contexts.
+                            </p>
 
-                    <p className="mt-4 text-black text-lg leading-relaxed">
-                        I write <span className="font-semibold" style={{ color: '#01a2bb' }}>travel notes</span>,{" "}
-                        <span className="font-semibold" style={{ color: '#01a2bb' }}>late-night stories</span>,{" "}
-                        and <span className="font-semibold" style={{ color: '#01a2bb' }}>practical guides</span> for life abroad.
-                        Each piece aims to be welcoming, exact, and human.
-                    </p>
-
-                    <p className="mt-4 text-black text-lg leading-relaxed">
-                        This space holds essays, short fiction, and honest reflections. Read
-                        for company, for insight, or for the plain pleasure of a well-told
-                        moment.
-                    </p>
+                            <p className="mt-6 text-black text-lg leading-relaxed">
+                                My writing blends personal insight with professional experience, developed through collaborations with major companies and names in the US, UK, Canada, Germany, China, Philippines, New Zealand, Australia, and beyond as well as working for one of the most viewed financial experts on Quora.
+                            </p>
+                            <p className="mt-6 text-black text-lg leading-relaxed">
+                                The words read like a conversation—clear, grounded, and attentive to meaning.
+                            </p>
+                            <p className="mt-6 text-black text-lg leading-relaxed">
+                                This space brings together essays, short fiction, travel notes, late-night reflections, and practical guides shaped by real-world experience.
+                            </p>
+                            <p className="mt-6 text-black text-lg leading-relaxed">
+                                Read for company, for insight, or simply for the quite pleasure of a well-told moment.
+                            </p>
                 </motion.div>
             </div>
         </section>

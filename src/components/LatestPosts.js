@@ -32,7 +32,7 @@ export default function LatestPosts() {
     return (
         <section className="w-full lg:mt-32 mt-0">
             <div className="py-8">
-                <div className="container mx-auto px-4">
+                <div className="max-w-6xl mx-auto px-4">
                     <SectionHeading
                         number="02"
                         title="Latest Posts"
@@ -40,7 +40,7 @@ export default function LatestPosts() {
                         lineBgColor="#000000"
                     />
                 </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid lg:grid-cols-2 xl:grid-cols-3">
                     {loading &&
                         Array.from({ length: 6 }).map((_, i) => (
                             <SkeletonCard key={i} />

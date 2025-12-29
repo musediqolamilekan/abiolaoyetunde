@@ -1,4 +1,5 @@
 'use client'
+
 import Header from '@/components/Header'
 import Image from 'next/image'
 
@@ -7,7 +8,7 @@ export default function About() {
         <div className="text-slate-800 bg-white">
             {/* HERO */}
             <section
-                className="relative px-6 py-20 md:py-28 bg-cover breadcrumb bg-center bg-no-repeat"
+                className="relative px-6 py-20 md:py-28 bg-cover bg-center bg-no-repeat breadcrumb"
                 style={{
                     backgroundImage: "url('/images/hero-pic.jpg')",
                     backgroundAttachment: 'fixed',
@@ -17,10 +18,8 @@ export default function About() {
                 <div className="absolute inset-0 bg-black/55" />
                 <Header />
 
-                <div className="relative container mx-auto flex flex-col items-center justify-center text-center h-full mt-32 text-white">
-                    <h1 className="text-5xl md:text-6xl font-bold">
-                        ABOUT
-                    </h1>
+                <div className="relative max-w-6xl mx-auto flex flex-col items-center justify-center text-center h-full mt-32 text-white">
+                    <h1 className="text-5xl md:text-6xl font-bold">ABOUT</h1>
 
                     <nav aria-label="Breadcrumb" className="mt-4 text-sm">
                         <ol className="flex items-center gap-2">
@@ -30,50 +29,44 @@ export default function About() {
                                 </a>
                             </li>
                             <li aria-hidden className="text-lg">»</li>
-                            <li className="font-medium text-lg">
-                                About
-                            </li>
+                            <li className="font-medium text-lg">About</li>
                         </ol>
                     </nav>
                 </div>
             </section>
 
             {/* ABOUT CONTENT */}
-            <section className="container mx-auto px-6 py-24">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <section className="mx-auto max-w-6xl px-6 py-24">
+                <div className="grid lg:grid-cols-[5fr_7fr] gap-20 items-start">
 
                     {/* LEFT CONTENT */}
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-semibold mb-8">
-                            Who We Are
-                        </h2>
+                        <div className="max-w-xl">
+                            <h2 className="text-3xl md:text-4xl font-semibold mb-8">
+                                Who I am
+                            </h2>
 
-                        <p className="text-lg leading-relaxed mb-6">
-                            I am a writer and author driven by clarity, curiosity, and honest storytelling.
-                            My work focuses on ideas that sit quietly beneath the surface, the kind that only
-                            reveal themselves when words are handled with care.
-                        </p>
+                            <p className="text-lg leading-relaxed mb-4">
+                                Abiola Oyetunde is a reflective storyteller, technical writer, copywriting specialist, and author driven by clarity, curiosity, and honest storytelling. My work focuses on clear, intentional stories that explore human experience, personal growth, creativity, and everyday moments that shape how we think and live.
+                            </p>
 
-                        <p className="text-lg leading-relaxed mb-6">
-                            Over the years, I have written essays, articles, and long-form pieces that explore
-                            human experience, personal growth, creativity, and the everyday moments that shape
-                            how we think and live. I value structure, rhythm, and meaning in equal measure.
-                        </p>
+                            <p className="text-lg leading-relaxed mb-4">
+                                My writing spans long-form content, thoughtful copy, technical writing, and screenwriting, shaped by years of professional practice and real-world application. I value clear thinking and investing consistently in learning through industry workshops and training to refine my craft.
+                                Writing, to me, is not noise.
+                            </p>
 
-                        <p className="text-lg leading-relaxed mb-10">
-                            Writing, to me, is not noise. It is a deliberate act. Each sentence is placed with
-                            intention, each paragraph designed to guide the reader gently forward without
-                            distraction or excess.
-                        </p>
+                            <p className="text-lg leading-relaxed mb-4">
+                                It is a deliberate act —translating complex ideas into clear, easy, simple language that improves understanding and user experience.
+                                This platform is a portfolio space, offering an overview of my work, experience, and writing approach.
+                            </p>
+                        </div>
 
                         {/* FEATURES */}
-                        <div className="grid sm:grid-cols-3 gap-8 mt-12">
+                        <div className="grid sm:grid-cols-3 gap-10 pt-10 mt-12 border-t border-gray-200">
                             <div>
-                                <div className="mb-4">
-                                    <span className="inline-flex items-center justify-center w-12 h-12 border border-black text-lg font-semibold">
-                                        01
-                                    </span>
-                                </div>
+                                <span className="inline-flex items-center justify-center w-12 h-12 border border-black text-lg font-semibold mb-4">
+                                    01
+                                </span>
                                 <h4 className="text-sm font-semibold uppercase mb-2">
                                     Thoughtful Writing
                                 </h4>
@@ -83,11 +76,9 @@ export default function About() {
                             </div>
 
                             <div>
-                                <div className="mb-4">
-                                    <span className="inline-flex items-center justify-center w-12 h-12 border border-black text-lg font-semibold">
-                                        02
-                                    </span>
-                                </div>
+                                <span className="inline-flex items-center justify-center w-12 h-12 border border-black text-lg font-semibold mb-4">
+                                    02
+                                </span>
                                 <h4 className="text-sm font-semibold uppercase mb-2">
                                     Editorial Precision
                                 </h4>
@@ -97,11 +88,9 @@ export default function About() {
                             </div>
 
                             <div>
-                                <div className="mb-4">
-                                    <span className="inline-flex items-center justify-center w-12 h-12 border border-black text-lg font-semibold">
-                                        03
-                                    </span>
-                                </div>
+                                <span className="inline-flex items-center justify-center w-12 h-12 border border-black text-lg font-semibold mb-4">
+                                    03
+                                </span>
                                 <h4 className="text-sm font-semibold uppercase mb-2">
                                     Original Voice
                                 </h4>
@@ -113,37 +102,31 @@ export default function About() {
                     </div>
 
                     {/* RIGHT IMAGE */}
-                    <div className="relative">
-                        <div className="lg:hidden flex justify-center">
-                            <div className="relative w-full h-[420px] rounded-3xl bg-neutral-800 p-3">
-                                <div className="relative w-full h-full rounded-2xl bg-neutral-700 p-3">
-                                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
-                                        <Image
-                                            src="/images/hero-pic.jpg"
-                                            alt="editorial visual"
-                                            fill
-                                            className="object-cover grayscale transition duration-500"
-                                            priority
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="lg:block hidden overflow-hidden z-15 opacity-[0.9965] transform translate-x-0 translate-y-0 origin-center">
-                            <div className="relative z-11 text-white w-[760px] h-[585px] min-w-0 min-h-0 max-w-none max-h-none opacity-100 transform translate-x-0 translate-y-0 origin-center visible">
-                                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-lg" style={{ zIndex: 10 }}>
-                                    <Image
-                                        src="/images/hero-pic.jpg"
-                                        alt="editorial visual"
-                                        fill
-                                        style={{ objectFit: 'cover' }}
-                                        className="transition duration-500"
-                                        priority
-                                    />
-                                </div>
-                            </div>
+                    <div className="hidden lg:block sticky top-32">
+                        <div className="relative w-full h-[620px] rounded-2xl overflow-hidden shadow-xl">
+                            <Image
+                                src="/images/hero-pic.jpg"
+                                alt="editorial visual"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
                         </div>
                     </div>
+
+                    {/* MOBILE IMAGE */}
+                    <div className="lg:hidden">
+                        <div className="relative w-full h-[420px] rounded-2xl overflow-hidden shadow-lg">
+                            <Image
+                                src="/images/hero-pic.jpg"
+                                alt="editorial visual"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </div>

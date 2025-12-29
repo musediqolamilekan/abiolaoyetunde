@@ -17,7 +17,7 @@ export default function About() {
                         <div className="absolute inset-0 bg-black/20" />
                     </div>
             <div className="">
-                <div className="relative container mx-auto">
+                <div className="relative max-w-6xl mx-auto">
                     <div className="lg:max-w-3xl w-full relative">
                         <motion.div
                             initial={{ opacity: 0, y: 18 }}

@@ -40,7 +40,7 @@ export default function ContactUs() {
 
     return (
         <>
-            <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto px-4">
                 <SectionHeading number="03" title="Contact" className="lg:mt-32 mt-20" titleColor='#000000' lineBgColor='#000000' />
             </div>
             <div className="w-full bg-neutral-800 text-white">

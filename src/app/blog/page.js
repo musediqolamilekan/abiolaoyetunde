@@ -17,7 +17,7 @@ export default function BlogIndex() {
             >
                 <div className="absolute inset-0 bg-black/55" />
                 <Header />
-                <div className="relative container mx-auto flex flex-col items-center justify-center text-center h-full mt-32 text-white">
+                <div className="relative max-w-6xl mx-auto flex flex-col items-center justify-center text-center h-full mt-32 text-white">
                     <h1 className="text-5xl md:text-6xl font-bold text-white">
                         BLOG
                     </h1>

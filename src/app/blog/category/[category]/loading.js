@@ -6,7 +6,7 @@ export default function Loading() {
                 <div className="h-5 w-1/3 mx-auto bg-neutral-400" />
             </section>
 
-            <section className="container mx-auto px-6 py-20">
+            <section className="max-w-6xl mx-auto px-6 py-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {Array.from({ length: 6 }).map((_, i) => (
                         <div

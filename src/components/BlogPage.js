@@ -106,7 +106,7 @@ export default function BlogPage() {
     }, [activeCategory])
 
     return (
-        <section className="container mx-auto lg:px-6 px-4 py-20">
+        <section className="max-w-6xl mx-auto lg:px-6 px-4 py-20">
             <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-14">
                 <aside className="hidden lg:block space-y-14">
                     <Search query={query} setQuery={setQuery} setPage={setPage} />

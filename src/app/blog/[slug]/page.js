@@ -90,7 +90,7 @@ export default async function PostPage({ params }) {
                 <div className="absolute inset-0 bg-black/55" />
                 <Header />
 
-                <div className="relative container mx-auto flex flex-col items-center justify-center text-center h-full mt-32 text-white">
+                <div className="relative max-w-6xl mx-auto flex flex-col items-center justify-center text-center h-full mt-32 text-white">
                     <h1 className="text-5xl md:text-6xl font-bold">BLOG</h1>
 
                     <nav className="mt-4 text-lg">
@@ -114,7 +114,7 @@ export default async function PostPage({ params }) {
                 </div>
             </section>
 
-            <section className="container mx-auto px-6 py-20">
+            <section className="max-w-6xl mx-auto px-6 py-20">
                 <div className="grid lg:grid-cols-3 gap-14">
                     <article className="lg:col-span-2">
                         <h1 className="text-3xl md:text-4xl font-semibold mb-6 text-black">
@@ -254,7 +254,7 @@ export default async function PostPage({ params }) {
 
 export function Loading() {
     return (
-        <div className="container mx-auto px-6 py-32 animate-pulse space-y-6">
+        <div className="max-w-6xl mx-auto px-6 py-32 animate-pulse space-y-6">
             <div className="h-10 w-3/4 bg-neutral-300" />
             <div className="h-6 w-full bg-neutral-200" />
             <div className="h-6 w-5/6 bg-neutral-200" />

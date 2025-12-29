@@ -112,7 +112,7 @@ export default async function CategoryPage(props) {
     /* 4️⃣ Soft fallback (no notFound after fetch) */
     if (!data?.category) {
         return (
-            <div className="container mx-auto px-6 py-32 text-center">
+            <div className="max-w-6xl mx-auto px-6 py-32 text-center">
                 <h2 className="text-2xl font-semibold mb-4">
                     Category not found
                 </h2>
@@ -140,7 +140,7 @@ export default async function CategoryPage(props) {
                 <div className="absolute inset-0 bg-black/55" />
                 <Header />
 
-                <div className="relative container mx-auto flex flex-col items-center justify-center text-center h-full mt-32 text-white">
+                <div className="relative max-w-6xl mx-auto flex flex-col items-center justify-center text-center h-full mt-32 text-white">
                     <h1 className="text-5xl md:text-6xl font-bold">
                         Category Archives: {category.title}
                     </h1>
@@ -156,7 +156,7 @@ export default async function CategoryPage(props) {
             </section>
 
             {/* ---------- POSTS ---------- */}
-            <section className="container mx-auto px-6 py-20">
+            <section className="max-w-6xl mx-auto px-6 py-20">
                 {posts.length === 0 && (
                     <div className="py-24 text-center">
                         <p className="text-lg text-gray-600">

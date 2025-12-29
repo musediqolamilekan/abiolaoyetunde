@@ -34,7 +34,7 @@ export default function Header() {
             className={`fixed top-0 left-0 right-0 z-1000 transition-all duration-300 ${scrolled ? 'backdrop-blur-xl bg-black/10' : ''
                 }`}
         >
-            <div className="relative container px-4 mx-auto">
+            <div className="relative max-w-6xl px-4 mx-auto">
                 <div
                     className={`relative z-10 pointer-events-auto flex items-center justify-between py-7 bg-transparent transition-colors ${scrolled ? 'text-black' : 'text-white'
                         }`}

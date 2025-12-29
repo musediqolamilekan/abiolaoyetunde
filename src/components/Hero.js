@@ -20,7 +20,7 @@ export default function Hero() {
             style={{ backgroundImage: "url('/images/hero.jpg')", backgroundPosition: "50%", backgroundAttachment: "fixed", minHeight: "990px" }}
         >
             <Header />
-            <div className='container mx-auto px-6 relative lg:mt-0 mt-32'>
+            <div className='max-w-6xl mx-auto px-6 relative lg:mt-0 mt-32'>
                 <div className="grid md:grid-cols-2 items-center gap-8 relative">
                     <motion.div
                         variants={container}
@@ -84,7 +84,7 @@ export default function Hero() {
                             </div>
                         </div>
                     </div>
-                    <div className="absolute hidden lg:block pointer-events-auto left-[626px] top-[300px] z-9 translate-x-[21.575px] translate-y-[-2.375px] visible perspective-[601px]">
+                    <div className="absolute hidden xl:block pointer-events-auto left-[626px] top-[300px] z-9 translate-x-[21.575px] translate-y-[-2.375px] visible perspective-[601px]">
                         <div className="absolute block overflow-hidden origin-center translate-x-0 translate-y-0 transform">
                             <div className="z-9 text-white w-[406px] h-[406px] min-w-0 min-h-0 max-w-none max-h-none opacity-100 origin-center translate-x-0 translate-y-0 transform visible">
                                 <Image
@@ -98,7 +98,7 @@ export default function Hero() {
                             </div>
                         </div>
                     </div>
-                    <div className="absolute hidden lg:block pointer-events-auto left-[894px] top-[250px] z-10 translate-x-[17.26px] translate-y-[-1.9px] visible perspective-[601px]">
+                    <div className="absolute hidden xl:block pointer-events-auto left-[894px] top-[250px] z-10 translate-x-[17.26px] translate-y-[-1.9px] visible perspective-[601px]">
                         <div className="absolute block overflow-hidden origin-center translate-x-0 translate-y-0 transform">
                             <div className="z-10 cursor-pointer text-white w-[406px] h-[406px] min-w-0 min-h-0 max-w-none max-h-none opacity-100 origin-center translate-x-0 translate-y-0 transform visible">
                                 <Image
